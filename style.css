@@ -1,0 +1,270 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #0f172a;
+    color: #fff;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.progress {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.progress a {
+    color: #475569;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.progress a:hover {
+    color: #94a3b8;
+}
+
+/* 3D Container Viewport */
+.card-container {
+    width: 320px;
+    height: 420px;
+    perspective: 1200px; 
+    cursor: pointer;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 3px solid var(--theme-color-glow, rgba(255,255,255,0.1));
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    transition: border-color 0.3s ease;
+}
+
+.card-front .atomic-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    align-self: flex-start;
+    color: #94a3b8;
+}
+
+.card-front .symbol {
+    font-size: 5.5rem;
+    font-weight: 800;
+    margin: 10px 0;
+    text-shadow: 0 0 20px var(--theme-color-glow);
+    color: var(--theme-color, #fff);
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.card-front .name {
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.card-front .weight {
+    font-size: 1rem;
+    color: #64748b;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    justify-content: center;
+    gap: 30px;
+    text-align: center;
+}
+
+.card-back h3 {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    color: var(--theme-color, #fff);
+    border-bottom: 2px solid var(--theme-color-glow);
+    padding-bottom: 8px;
+    width: 100%;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.info-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 1rem;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    color: #cbd5e1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    padding-bottom: 4px;
+}
+
+.info-item span:first-child {
+    color: #64748b;
+    font-weight: 600;
+}
+
+.tap-hint {
+    font-size: 0.75rem;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 10px;
+    pointer-events: none;
+}
+
+/* Master Control Interface */
+.controls {
+    margin-top: 40px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    height: 50px;
+}
+
+/* Base Button Foundations */
+button {
+    background-color: #1e293b;
+    color: #cbd5e1;
+    border: 2px solid #334155;
+    padding: 0 22px;
+    height: 46px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button:hover {
+    background-color: var(--theme-color, #3b82f6);
+    border-color: transparent;
+    color: #0f172a;
+    box-shadow: 0 0 15px var(--theme-color-glow);
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+/* The Expandable Play Container */
+.play-hub {
+    display: flex;
+    background-color: #1e293b;
+    border: 2px solid #334155;
+    border-radius: 50px;
+    overflow: hidden;
+    height: 48px;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 95px; /* Fixed standard unexpanded base width */
+}
+
+#main-play-btn {
+    border: none;
+    background: transparent;
+    min-width: 91px;
+    color: var(--theme-color, #00ff88);
+}
+
+#main-play-btn:hover {
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--theme-color, #00ff88);
+}
+
+/* Hidden container configuration */
+.speed-options {
+    display: flex;
+    width: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    align-items: center;
+    gap: 2px;
+}
+
+.speed-options button {
+    border: none;
+    background: transparent;
+    height: 38px;
+    padding: 0 12px;
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+.speed-options button:hover {
+    background-color: #334155;
+    color: #fff;
+    box-shadow: none;
+}
+
+/* ACTIVATED EXPANDED RUNTIME STATES */
+.play-hub.expanded {
+    width: 275px; /* Gives the choices space to reveal smoothly */
+    border-color: var(--theme-color, #00ff88);
+}
+
+.play-hub.expanded #main-play-btn {
+    color: #ef4444; /* Change text color to Red on pause to signify an interrupt */
+    font-weight: 700;
+}
+
+.play-hub.expanded .speed-options {
+    width: 180px;
+    opacity: 1;
+    pointer-events: auto;
+    padding-right: 6px;
+}
+
+/* Active running speed highlighted item */
+.speed-options button.active-speed {
+    background-color: var(--theme-color, #00ff88);
+    color: #0f172a;
+    font-weight: 700;
+}
+
+/* Category Color Dynamic Variable Mapping */
+.reactive-nonmetal { --theme-color: #00ff88; --theme-color-glow: rgba(0, 255, 136, 0.25); }
+.noble-gas { --theme-color: #ff007f; --theme-color-glow: rgba(255, 0, 127, 0.25); }
+.alkali-metal { --theme-color: #ff4500; --theme-color-glow: rgba(255, 69, 0, 0.25); }
+.alkaline-earth { --theme-color: #ffa500; --theme-color-glow: rgba(255, 165, 0, 0.25); }
+.metalloid { --theme-color: #00ffff; --theme-color-glow: rgba(0, 255, 255, 0.25); }
+.post-transition { --theme-color: #70ff00; --theme-color-glow: rgba(112, 255, 0, 0.25); }
+.transition-metal { --theme-color: #ffd700; --theme-color-glow: rgba(255, 215, 0, 0.25); }
+.lanthanide { --theme-color: #ff00ff; --theme-color-glow: rgba(255, 0, 255, 0.25); }
+.actinide { --theme-color: #ba55d3; --theme-color-glow: rgba(186, 85, 211, 0.25); }

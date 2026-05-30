@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Periodic Flashcards</title>
+    <link rel="icon" type="image/svg+xml" href="gemini-svg.svg">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="progress">
+        <a href="home.html" id="progress-text">Element 1 of 118</a>
+    </div>
+
+    <div class="card-container reactive-nonmetal" id="card-container">
+        <div class="card" id="card">
+            
+            <div class="card-face card-front">
+                <div class="atomic-number" id="f-number">1</div>
+                <div class="symbol" id="f-symbol">H</div>
+                <div class="name" id="f-name">Hydrogen</div>
+                <div class="weight" id="f-weight">1.008 u</div>
+                <div class="tap-hint">Click Card To Flip</div>
+            </div>
+
+            <div class="card-face card-back">
+                <h3 id="b-category">REACTIVE NONMETAL</h3>
+                <div class="info-group">
+                    <div class="info-item">
+                        <span>Configuration:</span>
+                        <span id="b-config">1s¹</span>
+                    </div>
+                    <div class="info-item">
+                        <span>Standard State:</span>
+                        <span id="b-state">Gas</span>
+                    </div>
+                    <div class="info-item">
+                        <span>Discoverer:</span>
+                        <span id="b-discoverer">H. Cavendish</span>
+                    </div>
+                </div>
+                <div class="tap-hint">Click Card To Flip</div>
+            </div>
+
+        </div>
+    </div>
+
+   <div class="controls">
+        <button id="prev-btn" class="nav-btn">Previous</button>
+        
+        <div class="play-hub" id="play-hub">
+            <button id="main-play-btn" type="button">Play</button>
+            <div class="speed-options">
+                <button type="button" data-speed="1000">1s</button>
+                <button type="button" data-speed="2000">2s</button>
+                <button type="button" data-speed="5000">5s</button>
+            </div>
+        </div>
+
+        <button id="next-btn" class="nav-btn">Next</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
